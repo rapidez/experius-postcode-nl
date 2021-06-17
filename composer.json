@@ -1,6 +1,6 @@
 {
-    "name": "rapidez/postcode-nl",
-    "description": "Rapidez Postcode NL",
+    "name": "rapidez/experius-postcode-nl",
+    "description": "Rapidez Experius Postcode NL implementation",
     "keywords": [
         "rapidez"
     ],
@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rapidez\\PostcodeNL\\": "src"
+            "Rapidez\\ExperiusPostcodeNL\\": "src"
         }
     },
     "config": {
@@ -39,7 +39,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rapidez\\PostcodeNL\\PostcodeNLServiceProvider"
+                "Rapidez\\ExperiusPostcodeNL\\ExperiusPostcodeNLServiceProvider"
             ]
         }
     }
