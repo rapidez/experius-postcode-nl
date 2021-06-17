@@ -1,4 +1,4 @@
-<postcode-nl type="{{ $type }}">
+<experius-postcode-nl type="{{ $type }}">
     <div class="col-span-12 sm:col-span-12">
         <div class="grid grid-cols-12 gap-4 mb-3">
             <div class="col-span-12 sm:col-span-12 p-3 bg-gray-200">
@@ -69,4 +69,4 @@
             </div>
         </div>
     </div>
-</postcode-nl>
+</experius-postcode-nl>
