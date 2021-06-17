@@ -1,0 +1,46 @@
+{
+    "name": "rapidez/postcode-nl",
+    "description": "Rapidez Postcode NL",
+    "keywords": [
+        "rapidez"
+    ],
+    "homepage": "https://rapidez.io",
+    "authors": [
+        {
+            "name": "Claudio Ferraro",
+            "email": "claudio@justbetter.nl",
+            "homepage": "https://justbetter.nl",
+            "role": "Developer at JustBetter"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:rapidez/core.git"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/database": "^8.0",
+        "illuminate/support": "^8.0",
+        "illuminate/view": "^8.0",
+        "rapidez/core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rapidez\\PostcodeNL\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rapidez\\PostcodeNL\\PostcodeNLServiceProvider"
+            ]
+        }
+    }
+}
