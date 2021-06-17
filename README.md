@@ -5,7 +5,6 @@ Implementation of the Postcode NL API with the Magento 2 Experius-Postcode-NL mo
 Make sure the [Magento 2 Experius-Postcode-NL](https://github.com/experius/Magento-2-Module-Experius-Postcode-NL) module has been installed and comfigured in your Magento installation.
 
 ## Installation
-
 ```
 composer require rapidez/postcode-nl
 ```
@@ -22,5 +21,5 @@ php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --ta
 
 Replace in `resources/views/vendor/rapidez/checkout/partials/form.blade.php` the postcode, street, housenumber and city fields for:
 ```
-    @include('postcode-nl::checkout/postcode-nl')
+@include('postcode-nl::checkout/postcode-nl')
 ```

@@ -3,9 +3,7 @@
         props: ['type'],
 
         render() {
-            return this.$scopedSlots.default({
-                checkout: this.checkout
-            })
+            return this.$scopedSlots.default()
         },
 
         methods: {

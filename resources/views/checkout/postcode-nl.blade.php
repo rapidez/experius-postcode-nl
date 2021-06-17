@@ -25,7 +25,8 @@
             </div>
             <div
                 v-if="checkout.{{ $type }}_address.hasHouseNumberAdditions || checkout.{{ $type }}_address.manual_input"
-                class="col-span-6 sm:col-span-4">
+                class="col-span-6 sm:col-span-4"
+            >
                 <x-rapidez::input
                     name="{{ $type }}_addition"
                     label="Addition"
@@ -40,7 +41,8 @@
             </div>
             <div
                 v-if="checkout.{{ $type }}_address.message"
-                class="col-span-12 sm:col-span-12 p-3 text-red-600 bg-red-100">
+                class="col-span-12 sm:col-span-12 p-3 text-red-600 bg-red-100"
+            >
                 <p v-text="checkout.{{ $type }}_address.message" />
             </div>
             <div class="col-span-6 sm:col-span-6 sm:col-start-1">
