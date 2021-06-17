@@ -2,7 +2,7 @@
 Implementation of the Postcode NL API with the Magento 2 Experius-Postcode-NL module for Rapidez.
 
 ## Requirements
-Make sure the [Magento 2 Experius-Postcode-NL](https://github.com/experius/Magento-2-Module-Experius-Postcode-NL) module has been installed and comfigured in your Magento installation.
+Make sure the [Magento 2 Experius-Postcode-NL](https://github.com/experius/Magento-2-Module-Experius-Postcode-NL) module has been installed and configured in your Magento installation.
 
 ## Installation
 ```
