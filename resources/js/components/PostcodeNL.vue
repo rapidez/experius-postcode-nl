@@ -31,13 +31,6 @@
                         }
                     })
                 }
-            },
-            manualInput() {
-                if (this.checkout[this.addressType].manual_input) {
-                    return true
-                }
-
-                return false
             }
         },
         computed: {
