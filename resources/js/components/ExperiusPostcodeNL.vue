@@ -8,7 +8,7 @@
 
         methods: {
             getAddressFromAPI() {
-                if (!this.checkout[this.addressType].manual_input) {
+                if (!this.checkout[this.addressType + '_manualInput']) {
                     let response = magento.post('postcode/information', {
                         houseNumber: this.checkout[this.addressType].street[1] !== undefined
                             ? this.checkout[this.addressType].street[1]
@@ -19,13 +19,13 @@
                         postcode: this.checkout[this.addressType].postcode
                     }).then(response => {
                         response = JSON.parse(response.data)
-                        this.checkout[this.addressType].message = false
+                        this.checkout[this.addressType + '_postcodeMessage'] = false
                         this.checkout[this.addressType].street[0] = response.street
                         this.checkout[this.addressType].city = response.city
-                        this.checkout[this.addressType].hasHouseNumberAdditions = response.houseNumberAdditions !== undefined && response.houseNumberAdditions.length > 1
+                        this.checkout[this.addressType + '_hasHouseNumberAdditions'] = response.houseNumberAdditions !== undefined && response.houseNumberAdditions.length > 1
 
                         if (response.message) {
-                            this.checkout[this.addressType].message = response.message
+                            this.checkout[this.addressType + '_postcodeMessage'] = response.message
                         }
                     })
                 }
