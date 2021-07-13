@@ -24,7 +24,7 @@
                 />
             </div>
             <div
-                v-if="checkout.{{ $type }}_address.hasHouseNumberAdditions || checkout.{{ $type }}_address.manual_input"
+                v-if="checkout.{{ $type }}_address_hasHouseNumberAdditions || checkout.{{ $type }}_address_manualInput"
                 class="col-span-6 sm:col-span-4"
             >
                 <x-rapidez::input
@@ -35,35 +35,35 @@
                 />
             </div>
             <div class="col-span-6 sm:col-span-6 sm:col-start-1">
-                <x-rapidez::checkbox v-model="checkout.{{ $type }}_address.manual_input">
+                <x-rapidez::checkbox v-model="checkout.{{ $type }}_address_manualInput">
                     @lang('Manually fill in the address')
                 </x-rapidez::checkbox>
             </div>
             <div
-                v-if="checkout.{{ $type }}_address.message"
+                v-if="checkout.{{ $type }}_address_postcodeMessage"
                 class="col-span-12 sm:col-span-12 p-3 text-red-600 bg-red-100"
             >
-                <p v-text="checkout.{{ $type }}_address.message" />
+                <p v-text="checkout.{{ $type }}_address_postcodeMessage" />
             </div>
             <div class="col-span-6 sm:col-span-6 sm:col-start-1">
                 <x-rapidez::input
-                    v-bind:class="!checkout.{{ $type }}_address.manual_input ? 'bg-gray-200' : ''"
+                    v-bind:class="!checkout.{{ $type }}_address_manualInput ? 'bg-gray-200' : ''"
                     name="{{ $type }}_street"
                     v-model.lazy="checkout.{{ $type }}_address.street[0]"
                     label="Street"
                     :placeholder="__('Street')"
-                    v-bind:disabled="!checkout.{{ $type }}_address.manual_input"
+                    v-bind:disabled="!checkout.{{ $type }}_address_manualInput"
                     required
                 />
             </div>
             <div class="col-span-6 sm:col-span-6 sm:col-start-7">
                 <x-rapidez::input
-                    v-bind:class="!checkout.{{ $type }}_address.manual_input ? 'bg-gray-200' : ''"
+                    v-bind:class="!checkout.{{ $type }}_address_manualInput ? 'bg-gray-200' : ''"
                     name="{{ $type }}_city"
                     v-model.lazy="checkout.{{ $type }}_address.city"
                     label="City"
                     :placeholder="__('City')"
-                    v-bind:disabled="!checkout.{{ $type }}_address.manual_input"
+                    v-bind:disabled="!checkout.{{ $type }}_address_manualInput"
                     required
                 />
             </div>
