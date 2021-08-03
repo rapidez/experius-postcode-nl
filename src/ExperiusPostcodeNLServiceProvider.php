@@ -2,7 +2,6 @@
 
 namespace Rapidez\ExperiusPostcodeNL;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ExperiusPostcodeNLServiceProvider extends ServiceProvider
