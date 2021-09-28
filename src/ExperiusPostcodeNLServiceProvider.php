@@ -11,7 +11,7 @@ class ExperiusPostcodeNLServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'experius-postcode-nl');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/rapidez/experius-postcode-nl'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/experius-postcode-nl'),
         ], 'views');
     }
 }
