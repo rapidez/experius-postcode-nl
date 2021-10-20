@@ -8,7 +8,18 @@
             })
         },
         methods: {
+            clearStreetAndCity() {
+                if (!this.checkout[this.addressType + '_manualInput']) {
+                    this.checkout[this.addressType].street[0] = ''
+                    this.checkout[this.addressType].city = ''
+                }
+            },
             shouldCheckPostcode() {
+                /**
+                 * Always clear street and city fields before postcode check
+                 */
+                this.clearStreetAndCity()
+
                 return !this.checkout[this.addressType + '_manualInput']
                     && this.checkout[this.addressType].postcode !== ''
                     && 1 in this.checkout[this.addressType].street
