@@ -48,7 +48,7 @@
                 <div class="col-span-6 sm:col-span-6 sm:col-start-1">
                     <x-rapidez::checkbox
                         v-model="checkout.{{ $type }}_address_manualInput"
-                        v-on:change="mutate"
+                        v-on:change="beforePostcodeCheck() && mutate()"
                     >
                         @lang('Manually fill in the address')
                     </x-rapidez::checkbox>
