@@ -1,33 +1,29 @@
 <script>
     export default {
         props: ['type'],
-
         render() {
-            return this.$scopedSlots.default()
+            return this.$scopedSlots.default({
+                shouldCheckPostcode: this.shouldCheckPostcode,
+                callbackPostcodeCheck: this.callbackPostcodeCheck
+            })
         },
-
         methods: {
-            getAddressFromAPI() {
-                if (!this.checkout[this.addressType + '_manualInput']) {
-                    let response = magento.post('postcode/information', {
-                        houseNumber: this.checkout[this.addressType].street[1] !== undefined
-                            ? this.checkout[this.addressType].street[1]
-                            : '',
-                        houseNumberAddition: this.checkout[this.addressType].street[2] !== undefined
-                            ? this.checkout[this.addressType].street[2]
-                            : '',
-                        postcode: this.checkout[this.addressType].postcode
-                    }).then(response => {
-                        response = JSON.parse(response.data)
-                        this.checkout[this.addressType + '_postcodeMessage'] = false
-                        this.checkout[this.addressType].street[0] = response.street
-                        this.checkout[this.addressType].city = response.city
-                        this.checkout[this.addressType + '_hasHouseNumberAdditions'] = response.houseNumberAdditions !== undefined && response.houseNumberAdditions.length > 1
-
-                        if (response.message) {
-                            this.checkout[this.addressType + '_postcodeMessage'] = response.message
-                        }
-                    })
+            shouldCheckPostcode() {
+                return !this.checkout[this.addressType + '_manualInput']
+                    && this.checkout[this.addressType].postcode !== ''
+                    && 1 in this.checkout[this.addressType].street
+                    && this.checkout[this.addressType].country_id == 'NL'
+            },
+            callbackPostcodeCheck(changes, data, response) {
+                this.checkout[this.addressType + '_postcodeMessage'] = false
+                if (!response.data.errors) {
+                    this.checkout[this.addressType].postcode = response.data.data.postcode.postcode
+                    this.checkout[this.addressType].street[0] = response.data.data.postcode.street
+                    this.checkout[this.addressType].city = response.data.data.postcode.city
+                    this.checkout[this.addressType + '_hasHouseNumberAdditions'] = response.data.data.postcode.houseNumberAdditions !== undefined && response.data.data.postcode.houseNumberAdditions.length > 1
+                }
+                if (response.data.errors) {
+                    this.checkout[this.addressType + '_postcodeMessage'] = response.data.errors[0].message
                 }
             }
         },
@@ -37,16 +33,6 @@
             },
             checkout: function () {
                 return this.$root.checkout
-            }
-        },
-        watch: {
-            'checkout': {
-                deep: true,
-                handler: function() {
-                    if (this.checkout[this.addressType].country_id == 'NL') {
-                        this.getAddressFromAPI()
-                    }
-                }
             }
         }
     }
