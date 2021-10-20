@@ -1,8 +1,10 @@
 <experius-postcode-nl type="{{ $type }}">
-    <div class="col-span-12" slot-scope="{ postcodeMutate }">
+    <div class="col-span-12" slot-scope="{ beforePostcodeCheck, callbackPostcodeCheck }">
         <graphql-mutation
             query="query postcode($postcode: String $houseNumber: String $houseNumberAddition: String) { postcode( postcode: $postcode houseNumber: $houseNumber houseNumberAddition: $houseNumberAddition ) { street houseNumber houseNumberAddition postcode city province houseNumberAdditions } }"
             :variables="{ postcode: checkout.{{ $type }}_address.postcode, houseNumber: checkout.{{ $type }}_address.street[1], houseNumberAddition: '' }"
+            :before-mutate="beforePostcodeCheck"
+            :callback="callbackPostcodeCheck"
         >
             <div class="grid grid-cols-12 gap-4 mb-3" slot-scope="{ variables, mutate }">
                 <div class="col-span-12 p-3 bg-gray-200">
@@ -14,7 +16,7 @@
                         name="{{ $type }}_postcode"
                         v-model.lazy="checkout.{{ $type }}_address.postcode"
                         v-on:change="$set(variables, 'postcode', checkout.{{ $type }}_address.postcode)"
-                        v-on:blur="postcodeMutate(mutate)"
+                        v-on:blur="mutate"
                         label="Postcode"
                         :placeholder="__('Postcode')"
                         required
@@ -25,7 +27,7 @@
                         name="{{ $type }}_housenumber"
                         v-model.lazy="checkout.{{ $type }}_address.street[1]"
                         v-on:change="$set(variables, 'houseNumber', checkout.{{ $type }}_address.street[1])"
-                        v-on:blur="postcodeMutate(mutate)"
+                        v-on:blur="mutate"
                         label="Housenumber"
                         :placeholder="__('Nr.')"
                         required
@@ -39,13 +41,16 @@
                         name="{{ $type }}_addition"
                         v-model.lazy="checkout.{{ $type }}_address.street[2]"
                         v-on:change="$set(variables, 'houseNumberAddition', checkout.{{ $type }}_address.street[2])"
-                        v-on:blur="postcodeMutate(mutate)"
+                        v-on:blur="mutate"
                         label="Addition"
                         :placeholder="__('Addition')"
                     />
                 </div>
                 <div class="col-span-6 sm:col-span-6 sm:col-start-1">
-                    <x-rapidez::checkbox v-model="checkout.{{ $type }}_address_manualInput">
+                    <x-rapidez::checkbox
+                        v-model="checkout.{{ $type }}_address_manualInput"
+                        v-on:change="mutate"
+                    >
                         @lang('Manually fill in the address')
                     </x-rapidez::checkbox>
                 </div>
