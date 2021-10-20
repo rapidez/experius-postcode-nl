@@ -8,7 +8,7 @@
             })
         },
         methods: {
-            shouldCheckPostcode(query, data, changes) {
+            shouldCheckPostcode() {
                 return !this.checkout[this.addressType + '_manualInput']
                     && this.checkout[this.addressType].postcode !== ''
                     && 1 in this.checkout[this.addressType].street
