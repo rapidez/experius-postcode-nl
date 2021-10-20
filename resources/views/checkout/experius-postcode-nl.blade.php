@@ -3,7 +3,6 @@
         <graphql-mutation
             query="query postcode($postcode: String $houseNumber: String $houseNumberAddition: String) { postcode( postcode: $postcode houseNumber: $houseNumber houseNumberAddition: $houseNumberAddition ) { street houseNumber houseNumberAddition postcode city province houseNumberAdditions } }"
             :variables="{ postcode: checkout.{{ $type }}_address.postcode, houseNumber: checkout.{{ $type }}_address.street[1], houseNumberAddition: '' }"
-            :before-mutate="beforePostcodeCheck"
             :callback="callbackPostcodeCheck"
         >
             <div class="grid grid-cols-12 gap-4 mb-3" slot-scope="{ variables, mutate }">
@@ -14,9 +13,9 @@
                 <div class="col-span-6 sm:col-span-4">
                     <x-rapidez::input
                         name="{{ $type }}_postcode"
-                        v-model.lazy="checkout.{{ $type }}_address.postcode"
+                        v-model="checkout.{{ $type }}_address.postcode"
                         v-on:change="$set(variables, 'postcode', checkout.{{ $type }}_address.postcode)"
-                        v-on:blur="mutate"
+                        v-on:blur="beforePostcodeCheck() && mutate()"
                         label="Postcode"
                         :placeholder="__('Postcode')"
                         required
@@ -25,9 +24,9 @@
                 <div class="col-span-6 sm:col-span-4">
                     <x-rapidez::input
                         name="{{ $type }}_housenumber"
-                        v-model.lazy="checkout.{{ $type }}_address.street[1]"
+                        v-model="checkout.{{ $type }}_address.street[1]"
                         v-on:change="$set(variables, 'houseNumber', checkout.{{ $type }}_address.street[1])"
-                        v-on:blur="mutate"
+                        v-on:blur="beforePostcodeCheck() && mutate()"
                         label="Housenumber"
                         :placeholder="__('Nr.')"
                         required
@@ -39,9 +38,9 @@
                 >
                     <x-rapidez::input
                         name="{{ $type }}_addition"
-                        v-model.lazy="checkout.{{ $type }}_address.street[2]"
+                        v-model="checkout.{{ $type }}_address.street[2]"
                         v-on:change="$set(variables, 'houseNumberAddition', checkout.{{ $type }}_address.street[2])"
-                        v-on:blur="mutate"
+                        v-on:blur="beforePostcodeCheck() && mutate()"
                         label="Addition"
                         :placeholder="__('Addition')"
                     />
@@ -64,7 +63,7 @@
                     <x-rapidez::input
                         v-bind:class="!checkout.{{ $type }}_address_manualInput ? 'bg-gray-200' : ''"
                         name="{{ $type }}_street"
-                        v-model.lazy="checkout.{{ $type }}_address.street[0]"
+                        v-model="checkout.{{ $type }}_address.street[0]"
                         label="Street"
                         :placeholder="__('Street')"
                         v-bind:disabled="!checkout.{{ $type }}_address_manualInput"
@@ -75,7 +74,7 @@
                     <x-rapidez::input
                         v-bind:class="!checkout.{{ $type }}_address_manualInput ? 'bg-gray-200' : ''"
                         name="{{ $type }}_city"
-                        v-model.lazy="checkout.{{ $type }}_address.city"
+                        v-model="checkout.{{ $type }}_address.city"
                         label="City"
                         :placeholder="__('City')"
                         v-bind:disabled="!checkout.{{ $type }}_address_manualInput"
