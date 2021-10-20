@@ -3,12 +3,12 @@
         props: ['type'],
         render() {
             return this.$scopedSlots.default({
-                beforePostcodeCheck: this.beforePostcodeCheck,
+                shouldCheckPostcode: this.shouldCheckPostcode,
                 callbackPostcodeCheck: this.callbackPostcodeCheck
             })
         },
         methods: {
-            beforePostcodeCheck(query, data, changes) {
+            shouldCheckPostcode(query, data, changes) {
                 return !this.checkout[this.addressType + '_manualInput']
                     && this.checkout[this.addressType].postcode !== ''
                     && 1 in this.checkout[this.addressType].street
