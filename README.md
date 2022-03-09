@@ -11,7 +11,7 @@ composer require rapidez/experius-postcode-nl
 
 And register the Vue component in `resources/js/app.js`:
 ```
-Vue.component('postcode-nl', require('Vendor/rapidez/postcode-nl/resources/js/components/ExperiusPostcodeNL.vue').default)
+Vue.component('postcode-nl', require('Vendor/rapidez/experius-postcode-nl/resources/js/components/ExperiusPostcodeNL.vue').default)
 ```
 
 If you haven't published the Rapidez views yet, publish them with:
