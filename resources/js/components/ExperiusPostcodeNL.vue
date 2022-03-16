@@ -25,7 +25,7 @@
                     && 1 in this.checkout[this.addressType].street
                     && this.checkout[this.addressType].country_id == 'NL'
             },
-            callbackPostcodeCheck(changes, data, response) {
+            callbackPostcodeCheck(data, response) {
                 this.checkout[this.addressType + '_postcodeMessage'] = false
                 if (!response.data.errors) {
                     this.checkout[this.addressType].postcode = response.data.data.postcode.postcode
