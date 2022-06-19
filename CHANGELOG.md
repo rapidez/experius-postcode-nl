@@ -1,6 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/org/repo/compare/0.3.0...master)
+## [Unreleased](https://github.com/org/repo/compare/0.3.1...master)
+
+## [0.3.1](https://github.com/org/repo/compare/0.3.0...0.3.1) - 2022-06-19
+
+### Fixed
+
+- Check if the housenumber field is not empty (#12)
 
 ## [0.3.0](https://github.com/org/repo/compare/0.2.2...0.3.0) - 2022-04-11
 
