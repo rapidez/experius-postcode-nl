@@ -23,6 +23,7 @@
                 return !this.checkout[this.addressType + '_manualInput']
                     && this.checkout[this.addressType].postcode !== ''
                     && 1 in this.checkout[this.addressType].street
+                    && this.checkout[this.addressType].street[1] !== ''
                     && this.checkout[this.addressType].country_id == 'NL'
             },
             callbackPostcodeCheck(data, response) {
