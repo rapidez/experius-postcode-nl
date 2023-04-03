@@ -9,11 +9,6 @@ Make sure the [Magento 2 Experius-Postcode-NL](https://github.com/experius/Magen
 composer require rapidez/experius-postcode-nl
 ```
 
-Make sure this exists in your `app.js`:
-```js
-import.meta.glob(['Vendor/rapidez/*/resources/js/app.js'], { eager: true });
-```
-
 If you haven't published the Rapidez views yet, publish them with:
 ```bash
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
