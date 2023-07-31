@@ -24,6 +24,8 @@
                 <div class="col-span-6 sm:col-span-4">
                     <x-rapidez::input
                         name="{{ $type }}_housenumber"
+                        type="number"
+                        pattern="^[0-9]+$"
                         v-model="checkout.{{ $type }}_address.street[1]"
                         v-on:change="$set(variables, 'houseNumber', checkout.{{ $type }}_address.street[1])"
                         v-on:blur="shouldCheckPostcode() && mutate()"
