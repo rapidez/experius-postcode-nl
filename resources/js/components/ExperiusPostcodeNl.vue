@@ -4,7 +4,8 @@
         render() {
             return this.$scopedSlots.default({
                 shouldCheckPostcode: this.shouldCheckPostcode,
-                callbackPostcodeCheck: this.callbackPostcodeCheck
+                callbackPostcodeCheck: this.callbackPostcodeCheck,
+                errorCallbackPostcodeCheck: this.errorCallbackPostcodeCheck
             })
         },
         data: () => ({
@@ -53,6 +54,16 @@
                 if (response.data.errors) {
                     this.checkout[this.addressType + '_postcodeMessage'] = response.data.errors[0].message
                 }
+            },
+            errorCallbackPostcodeCheck(data, response) {
+                this.responseData = {
+                    postcode: data.postcode,
+                    houseNumber: Number(data.houseNumber),
+                    houdeNumberAddition: data.houseNumberAddition
+                }
+
+                Notify(response.data.errors[0].message, 'error')
+                this.checkout[this.addressType + '_postcodeMessage'] = response.data.errors[0].message
             }
         },
         computed: {
