@@ -1,9 +1,10 @@
 <experius-postcode-nl type="{{ $type }}">
-    <div class="col-span-12" slot-scope="{ shouldCheckPostcode, callbackPostcodeCheck }">
+    <div class="col-span-12" slot-scope="{ shouldCheckPostcode, callbackPostcodeCheck, errorCallbackPostcodeCheck }">
         <graphql-mutation
             query="query postcode($postcode: String $houseNumber: String $houseNumberAddition: String) { postcode( postcode: $postcode houseNumber: $houseNumber houseNumberAddition: $houseNumberAddition ) { street houseNumber houseNumberAddition postcode city province houseNumberAdditions } }"
             :variables="{ postcode: checkout.{{ $type }}_address.postcode, houseNumber: checkout.{{ $type }}_address.street[1], houseNumberAddition: '' }"
             :callback="callbackPostcodeCheck"
+            :error-callback="errorCallbackPostcodeCheck"
         >
             <div class="grid grid-cols-12 gap-4 mb-3" slot-scope="{ variables, mutate }">
                 <div class="col-span-12 p-3 bg-gray-200">
