@@ -1,6 +1,13 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/0.4.1...master)
+[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/0.5.0...master)
+## [0.5.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/0.5.0) - 2023-11-02
+
+### Added
+
+- Laravel 10 support (567968c)
+- Error callback to prevent extra GraphQL requests (#15)
+
 ## [0.4.1](https://github.com/rapidez/experius-postcode-nl/releases/tag/0.4.1) - 2023-08-15
 
 ### Fixed
