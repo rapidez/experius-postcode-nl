@@ -8,6 +8,5 @@ class ExperiusPostcodeNLServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-
     }
 }
