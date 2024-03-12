@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/1.0.0...master)
+[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/1.1.0...master)
+## [1.1.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/1.1.0) - 2024-03-12
+
+### Changed
+
+- Listen on postcode-change event (#17)
+
 ## [1.0.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/1.0.0) - 2024-03-05
 
 ### Added
