@@ -5,7 +5,7 @@
 
 ### Added
 
-- Rapidez v2 support (#13)
+- Rapidez v2 support (#16)
 
 ## [0.5.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/0.5.0) - 2023-11-02
 
