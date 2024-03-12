@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/1.1.0...master)
+[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/2.0.0...master)
+## [2.0.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/2.0.0) - 2024-03-12
+
+### Changed
+
+- Use new Rapidez v2 methods and dropped v1 support (#18)
+
 ## [1.1.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/1.1.0) - 2024-03-12
 
 ### Changed
