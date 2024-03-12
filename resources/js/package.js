@@ -7,20 +7,12 @@ document.addEventListener('turbo:load', function () {
 
 const getAddressFromExperiusPostcode = useMemoize(
     async function (postcode, housenumber, housenumberAddition = '') {
-        return axios.post(
-            config.magento_url + '/graphql',
+        return magentoGraphQL(
+            'query postcode($postcode: String! $houseNumber: String! $houseNumberAddition: String) { postcode(postcode: $postcode houseNumber: $houseNumber houseNumberAddition: $houseNumberAddition) { street houseNumber houseNumberAddition postcode city province houseNumberAdditions } }',
             {
-                query: 'query postcode($postcode: String! $houseNumber: String! $houseNumberAddition: String) { postcode(postcode: $postcode houseNumber: $houseNumber houseNumberAddition: $houseNumberAddition) { street houseNumber houseNumberAddition postcode city province houseNumberAdditions } }',
-                variables: {
-                    postcode: postcode,
-                    houseNumber: housenumber,
-                    houseNumberAddition: housenumberAddition
-                },
-            },
-            {
-                headers: {
-                    Store: window.config.store_code,
-                }
+                postcode: postcode,
+                houseNumber: housenumber,
+                houseNumberAddition: housenumberAddition
             }
         )
     }
@@ -35,10 +27,10 @@ async function updateAddressFromExperiusPostcode(address) {
         return
     }
 
-    let response = (await getAddressFromExperiusPostcode(address.postcode, address?.housenumber || address.street[1]))?.data
+    let response = await getAddressFromExperiusPostcode(address.postcode, address?.housenumber || address.street[1])
 
-    if (!response?.data?.postcode?.city || !response?.data?.postcode?.street) {
-        if (response?.data?.postcode?.error == "Postcode not found") {
+    if (!response.data?.postcode?.city || !response.data?.postcode?.street) {
+        if (response.data?.postcode?.error == "Postcode not found") {
             set(address, 'city', '')
             set(address.street, 0, '')
         }
