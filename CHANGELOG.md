@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/2.0.0...master)
+[Unreleased changes](https://github.com/rapidez/experius-postcode-nl/compare/2.1.0...master)
+## [2.1.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/2.1.0) - 2024-05-28
+
+### Changed
+
+- Removed unneeded Laravel dependencies (#19)
+
 ## [2.0.0](https://github.com/rapidez/experius-postcode-nl/releases/tag/2.0.0) - 2024-03-12
 
 ### Changed
