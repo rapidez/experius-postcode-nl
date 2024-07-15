@@ -18,7 +18,7 @@ const getAddressFromExperiusPostcode = useMemoize(
     }
 )
 
-async function updateAddressFromExperiusPostcode(address) {
+async function updateAddressFromExperiusPostcode(address, type = 'shipping') {
     if ((address?.country_id || address?.country_code) != 'NL') {
         return
     }
@@ -37,6 +37,6 @@ async function updateAddressFromExperiusPostcode(address) {
         return
     }
 
-    set(address, 'city', response.data.postcode.city)
-    set(address.street, 0, response.data.postcode.street)
+    window.app.checkout[type + '_address'].city = response.data.postcode.city
+    window.app.checkout[type + '_address'].street[0] = response.data.postcode.street
 }
