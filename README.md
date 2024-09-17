@@ -15,13 +15,12 @@ php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --ta
 ```
 
 Add a event listener on the [postcode and housenumber fields](https://github.com/rapidez/core/blob/master/resources/views/checkout/partials/address.blade.php#L97):
-```blade
-    v-on:change="window.app.$emit('postcode-change', {{ $address }})"
+```diff
     <x-rapidez::input
         name="{{ $type }}_postcode"
         label="Postcode"
         v-model.lazy="checkout.{{ $type }}_address.postcode"
-        v-on:change="$root.$nextTick(() => window.app.$emit('postcode-change', checkout.{{ $type }}_address))"
++       v-on:change="$root.$nextTick(() => window.app.$emit('postcode-change', checkout.{{ $type }}_address))"
         required
     />
 
