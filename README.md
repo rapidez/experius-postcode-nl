@@ -14,7 +14,15 @@ If you haven't published the Rapidez views yet, publish them with:
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
 
-Replace in `resources/views/vendor/rapidez/checkout/partials/form.blade.php` the postcode, street, housenumber and city fields for:
+Add a event listener on the [postcode and housenumber fields](https://github.com/rapidez/core/blob/master/resources/views/checkout/partials/address.blade.php#L97):
 ```blade
-@include('postcode-nl::checkout/experius-postcode-nl')
+    v-on:change="window.app.$emit('postcode-change', {{ $address }})"
+    <x-rapidez::input
+        name="{{ $type }}_postcode"
+        label="Postcode"
+        v-model.lazy="checkout.{{ $type }}_address.postcode"
+        v-on:change="$root.$nextTick(() => window.app.$emit('postcode-change', checkout.{{ $type }}_address))"
+        required
+    />
+
 ```
