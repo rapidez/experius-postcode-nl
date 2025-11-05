@@ -20,7 +20,7 @@ Add a event listener on the [postcode and housenumber fields](https://github.com
         name="{{ $type }}_postcode"
         label="Postcode"
         v-model.lazy="checkout.{{ $type }}_address.postcode"
-+       v-on:change="$root.$nextTick(() => window.app.$emit('postcode-change', checkout.{{ $type }}_address))"
++       v-on:change="$root.$nextTick(() => window.$emit('postcode-change', checkout.{{ $type }}_address))"
         required
     />
 

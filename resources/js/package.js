@@ -1,9 +1,5 @@
-import { set, useDebounceFn, useMemoize } from "@vueuse/core";
-
-
-document.addEventListener('vue:loaded', function () {
-    window.app.$on('postcode-change', useDebounceFn(updateAddressFromExperiusPostcode, 100));
-})
+import { useDebounceFn, useMemoize } from "@vueuse/core";
+import { on } from 'Vendor/rapidez/core/resources/js/polyfills/emit.js'
 
 const getAddressFromExperiusPostcode = useMemoize(
     async function (postcode, housenumber, housenumberAddition = '') {
@@ -31,12 +27,14 @@ async function updateAddressFromExperiusPostcode(address) {
 
     if (!response.data?.postcode?.city || !response.data?.postcode?.street) {
         if (response.data?.postcode?.error == "Postcode not found") {
-            set(address, 'city', '')
-            set(address.street, 0, '')
+            address.city = ''
+            address.street[0] = ''
         }
         return
     }
 
-    set(address, 'city', response.data.postcode.city)
-    set(address.street, 0, response.data.postcode.street)
+    address.city = response.data.postcode.city
+    address.street[0] = response.data.postcode.street
 }
+
+on('postcode-change', useDebounceFn(updateAddressFromExperiusPostcode, 100), { autoremove: false });
