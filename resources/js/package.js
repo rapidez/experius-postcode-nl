@@ -14,7 +14,7 @@ const getAddressFromExperiusPostcode = useMemoize(
     }
 )
 
-async function updateAddressFromExperiusPostcode(address) {
+async function updateAddressFromExperiusPostcode(address, event) {
     if ((address?.country_id || address?.country_code) != 'NL') {
         return
     }
@@ -35,6 +35,7 @@ async function updateAddressFromExperiusPostcode(address) {
 
     address.city = response.data.postcode.city
     address.street[0] = response.data.postcode.street
+    event?.target?.parentElement?.dispatchEvent?.(new Event('change', {bubbles: true}));
 }
 
 on('postcode-change', useDebounceFn(updateAddressFromExperiusPostcode, 100), { autoremove: false });
