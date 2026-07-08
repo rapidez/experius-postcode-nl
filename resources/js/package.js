@@ -35,7 +35,10 @@ async function updateAddressFromExperiusPostcode(address, event) {
 
     address.city = response.data.postcode.city
     address.street[0] = response.data.postcode.street
-    event?.target?.parentElement?.dispatchEvent?.(new Event('change', {bubbles: true}));
+
+    window.setTimeout(() => {
+        event?.target?.parentElement?.dispatchEvent?.(new Event('change', {bubbles: true}));
+    })
 }
 
 on('postcode-change', useDebounceFn(updateAddressFromExperiusPostcode, 100), { autoremove: false });
