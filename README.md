@@ -1,3 +1,6 @@
+> [!WARNING]
+> Deprecated! Use https://github.com/rapidez/postcode
+
 # Rapidez Experius Postcode NL
 Implementation of the Postcode NL API with the Magento 2 Experius-Postcode-NL module for Rapidez.
 
