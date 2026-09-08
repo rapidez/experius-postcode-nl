@@ -1,6 +1,7 @@
 {
     "name": "rapidez/experius-postcode-nl",
     "description": "Rapidez Experius Postcode NL implementation",
+    "abandoned": "rapidez/postcode",
     "keywords": [
         "rapidez"
     ],
